@@ -9,6 +9,7 @@ body {
 	overflow-x: hidden;
 }
 .container {
+	position: relative;
 	max-width: 600px;
 	margin: auto;
 	display: flex;
@@ -86,7 +87,7 @@ body {
 .player-controls,
 .bottom-actions {
 	display: flex;
-justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 	margin-top: 20px;
 	width: 100%;
@@ -251,4 +252,89 @@ button:active,
 
 .hidden {
 	display: none;
+}
+
+#promptBtn {
+	position: absolute;
+	top: 20px;
+	left: 0px;
+	z-index: 2; /* Ensure it's above other elements */
+	background: none;
+	color: inherit;
+	border: 1px solid #555;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+	height: 60%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	position: relative; /* Required for absolute positioning of the submit button */
+}
+
+.modal-content p {
+	font-size: 18px;
+}
+
+#promptInput {
+	width: 100%; /* Make the input span the full width of the modal content */
+	height: 70%; /* Make the input larger */
+	resize: none; /* Disable manual resizing */
+	margin-bottom: 30px;
+}
+
+#submitPrompt {
+	position: absolute;
+	bottom: 10px; /* Align to the bottom of the modal content */
+	right: 10px;
+	background: none;
+	color: inherit;
+	border: 1px solid #555;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }

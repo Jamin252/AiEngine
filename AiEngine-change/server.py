@@ -1,6 +1,9 @@
 import os
 import re
-from flask import Flask, Response
+from flask import Flask, Response, request, jsonify
+import sys,path 
+sys.path.append("..")
+from AI_Engine import genai
 
 app = Flask(__name__)
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'templates')
@@ -31,6 +34,14 @@ def render_template_custom(filename):
 def index():
     html_content = render_template_custom('music.html')
     return Response(html_content, mimetype='text/html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    data = request.get_json()
+    prompt_text = data['prompt']
+    print(f"Received prompt: {prompt_text}")
+    # Call the AI model here
+    genai.main(prompt_text)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -18,151 +18,199 @@
 <end of line 9>
 <line 10> 	<body>
 <end of line 10>
-<line 11> 		<div class="container">
+<line 11> 		<div id="promptModal" class="modal">
 <end of line 11>
-<line 12> 			<!-- Disk with song cover, rotation effect controlled by adding .playing class -->
+<line 12> 			<div class="modal-content">
 <end of line 12>
-<line 13> 			<div class="disk playing" id="disk">
+<line 13> 				<span class="close">&times;</span>
 <end of line 13>
-<line 14> 				<img src="" />
+<line 14> 				<p>Prompts to customize your app:</p>
 <end of line 14>
-<line 15> 			</div>
+<line 15> 				<textarea id="promptInput"></textarea>
 <end of line 15>
-<line 16> 
+<line 16> 				<button id="submitPrompt" onclick="sendPrompt()">Submit</button>
 <end of line 16>
-<line 17> 			<div class="controls">
+<line 17> 			</div>
 <end of line 17>
-<line 18> 				<!-- Song info area -->
+<line 18> 		</div>
 <end of line 18>
-<line 19> 				<songInfo />
+<line 19> 
 <end of line 19>
-<line 20> 
+<line 20> 		<div class="container">
 <end of line 20>
-<line 21> 				<!-- Playback progress bar -->
+<line 21> 			<button id="promptBtn">
 <end of line 21>
-<line 22> 				<input
+<line 22> 				<svg
 <end of line 22>
-<line 23> 					type="range"
+<line 23> 					viewBox="0 0 1024 1024"
 <end of line 23>
-<line 24> 					class="control-slider"
+<line 24> 					version="1.1"
 <end of line 24>
-<line 25> 					id="progress-slider"
+<line 25> 					xmlns="http://www.w3.org/2000/svg"
 <end of line 25>
-<line 26> 					min="0"
+<line 26> 					width="20px"
 <end of line 26>
-<line 27> 					max="100"
+<line 27> 					height="20px"
 <end of line 27>
-<line 28> 					value="0"
+<line 28> 				>
 <end of line 28>
-<line 29> 				/>
+<line 29> 					<path
 <end of line 29>
-<line 30> 
+<line 30> 						d="M332.8 204.8L221.866667 264.533333l64-110.933333L221.866667 42.666667l110.933333 64L443.733333 42.666667 384 153.6l64 110.933333c-4.266667 0-115.2-59.733333-115.2-59.733333zM870.4 640l110.933333-64-64 110.933333 64 110.933334-110.933333-64-110.933333 64 64-110.933334-64-110.933333 110.933333 64zM981.333333 42.666667l-64 110.933333L981.333333 264.533333l-110.933333-64-110.933333 64 64-110.933333L759.466667 42.666667l110.933333 64L981.333333 42.666667z m-388.266666 482.133333l110.933333-110.933333-93.866667-93.866667-110.933333 110.933333 93.866667 93.866667zM640 277.333333L746.666667 384c17.066667 17.066667 17.066667 46.933333 0 64L221.866667 968.533333c-17.066667 17.066667-46.933333 17.066667-64 0l-106.666667-106.666666c-17.066667-17.066667-17.066667-46.933333 0-64L576 277.333333c17.066667-17.066667 46.933333-17.066667 64 0z"
 <end of line 30>
-<line 31> 				<!-- Playback time display -->
+<line 31> 					></path>
 <end of line 31>
-<line 32> 				<div class="time-info">
+<line 32> 				</svg>
 <end of line 32>
-<line 33> 					<span id="current-time">0:00</span>
+<line 33> 			</button>
 <end of line 33>
-<line 34> 					<span id="remaining-time">-0:00</span>
+<line 34> 
 <end of line 34>
-<line 35> 				</div>
+<line 35> 			<!-- Disk with song cover, rotation effect controlled by adding .playing class -->
 <end of line 35>
-<line 36> 
+<line 36> 			<div class="disk playing" id="disk">
 <end of line 36>
-<line 37> 				<!-- Playback control buttons -->
+<line 37> 				<img src="" />
 <end of line 37>
-<line 38> 				<div class="player-controls">
+<line 38> 			</div>
 <end of line 38>
-<line 39> 					<!-- Cycle mode button: toggles between loop, random, and loop one -->
+<line 39> 
 <end of line 39>
-<line 40> 					<button class="control-btn" id="cycle-mode-btn" title="Loop Mode"></button>
+<line 40> 			<div class="controls">
 <end of line 40>
-<line 41> 					<button class="control-btn" id="prev-btn" title="Previous Track">&#9664;&#9664;</button>
+<line 41> 				<!-- Song info area -->
 <end of line 41>
-<line 42> 					<button class="control-btn" id="play-pause-btn" title="Play/Pause">&#9654;</button>
+<line 42> 				<songInfo />
 <end of line 42>
-<line 43> 					<button class="control-btn" id="next-btn" title="Next Track">&#9654;&#9654;</button>
+<line 43> 
 <end of line 43>
-<line 44> 					<button class="control-btn" id="playlist-btn" title="Playlist">&#9776;</button>
+<line 44> 				<!-- Playback progress bar -->
 <end of line 44>
-<line 45> 				</div>
+<line 45> 				<input
 <end of line 45>
-<line 46> 
+<line 46> 					type="range"
 <end of line 46>
-<line 47> 				<!-- Bottom action buttons -->
+<line 47> 					class="control-slider"
 <end of line 47>
-<line 48> 				<div class="bottom-actions">
+<line 48> 					id="progress-slider"
 <end of line 48>
-<line 49> 					<connectBtn />
+<line 49> 					min="0"
 <end of line 49>
-<line 50> 					<button class="action-btn" id="download-btn" title="Download Song">&#8681;</button>
+<line 50> 					max="100"
 <end of line 50>
-<line 51> 					<moreBtn />
+<line 51> 					value="0"
 <end of line 51>
-<line 52> 				</div>
+<line 52> 				/>
 <end of line 52>
-<line 53> 			</div>
+<line 53> 
 <end of line 53>
-<line 54> 		</div>
+<line 54> 				<!-- Playback time display -->
 <end of line 54>
-<line 55> 
+<line 55> 				<div class="time-info">
 <end of line 55>
-<line 56> 		<!-- Download confirmation popup -->
+<line 56> 					<span id="current-time">0:00</span>
 <end of line 56>
-<line 57> 		<downloadPopup />
+<line 57> 					<span id="remaining-time">-0:00</span>
 <end of line 57>
-<line 58> 
+<line 58> 				</div>
 <end of line 58>
-<line 59> 		<!-- Bluetooth connection confirmation popup -->
+<line 59> 
 <end of line 59>
-<line 60> 		<bluetoothPopup />
+<line 60> 				<!-- Playback control buttons -->
 <end of line 60>
-<line 61> 
+<line 61> 				<div class="player-controls">
 <end of line 61>
-<line 62> 		<!-- Comments section -->
+<line 62> 					<!-- Cycle mode button: toggles between loop, random, and loop one -->
 <end of line 62>
-<line 63> 		<div id="comment-section">
+<line 63> 					<button class="control-btn" id="cycle-mode-btn" title="Loop Mode"></button>
 <end of line 63>
-<line 64> 			<!-- Place the content of the comment page here -->
+<line 64> 					<button class="control-btn" id="prev-btn" title="Previous Track">&#9664;&#9664;</button>
 <end of line 64>
-<line 65> 			<h2>Comments</h2>
+<line 65> 					<button class="control-btn" id="play-pause-btn" title="Play/Pause">&#9654;</button>
 <end of line 65>
-<line 66> 			<comment />
+<line 66> 					<button class="control-btn" id="next-btn" title="Next Track">&#9654;&#9654;</button>
 <end of line 66>
-<line 67> 			<comment />
+<line 67> 					<button class="control-btn" id="playlist-btn" title="Playlist">&#9776;</button>
 <end of line 67>
-<line 68> 			<comment />
+<line 68> 				</div>
 <end of line 68>
-<line 69> 			<comment />
+<line 69> 
 <end of line 69>
-<line 70> 			<comment />
+<line 70> 				<!-- Bottom action buttons -->
 <end of line 70>
-<line 71> 			<comment />
+<line 71> 				<div class="bottom-actions">
 <end of line 71>
-<line 72> 			<comment />
+<line 72> 					<connectBtn />
 <end of line 72>
-<line 73> 		</div>
+<line 73> 					<button class="action-btn" id="download-btn" title="Download Song">&#8681;</button>
 <end of line 73>
-<line 74> 		<script src="/static/js/menuBtn.js"></script>
+<line 74> 					<moreBtn />
 <end of line 74>
-<line 75> 		<script src="/static/js/titleScroller.js"></script>
+<line 75> 				</div>
 <end of line 75>
-<line 76> 		<script src="/static/js/likeBtn.js"></script>
+<line 76> 			</div>
 <end of line 76>
-<line 77> 		<script src="/static/js/commentBtn.js"></script>
+<line 77> 		</div>
 <end of line 77>
-<line 78> 		<script src="/static/js/download.js"></script>
+<line 78> 
 <end of line 78>
-<line 79> 		<script src="/static/js/bluetooth.js"></script>
+<line 79> 		<!-- Download confirmation popup -->
 <end of line 79>
-<line 80> 		<script src="/static/js/cycleMode.js"></script>
+<line 80> 		<downloadPopup />
 <end of line 80>
-<line 81> 		<script src="/static/js/moreBtn.js"></script>
+<line 81> 
 <end of line 81>
-<line 82> 		<script src="/static/js/songPlaying.js"></script>
+<line 82> 		<!-- Bluetooth connection confirmation popup -->
 <end of line 82>
-<line 83> 	</body>
+<line 83> 		<bluetoothPopup />
 <end of line 83>
-<line 84> </html>
+<line 84> 
 <end of line 84>
+<line 85> 		<!-- Comments section -->
+<end of line 85>
+<line 86> 		<div id="comment-section">
+<end of line 86>
+<line 87> 			<!-- Place the content of the comment page here -->
+<end of line 87>
+<line 88> 			<h2>Comments</h2>
+<end of line 88>
+<line 89> 			<comment />
+<end of line 89>
+<line 90> 			<comment />
+<end of line 90>
+<line 91> 			<comment />
+<end of line 91>
+<line 92> 			<comment />
+<end of line 92>
+<line 93> 			<comment />
+<end of line 93>
+<line 94> 			<comment />
+<end of line 94>
+<line 95> 			<comment />
+<end of line 95>
+<line 96> 		</div>
+<end of line 96>
+<line 97> 		<script src="/static/js/menuBtn.js"></script>
+<end of line 97>
+<line 98> 		<script src="/static/js/titleScroller.js"></script>
+<end of line 98>
+<line 99> 		<script src="/static/js/likeBtn.js"></script>
+<end of line 99>
+<line 100> 		<script src="/static/js/commentBtn.js"></script>
+<end of line 100>
+<line 101> 		<script src="/static/js/download.js"></script>
+<end of line 101>
+<line 102> 		<script src="/static/js/bluetooth.js"></script>
+<end of line 102>
+<line 103> 		<script src="/static/js/cycleMode.js"></script>
+<end of line 103>
+<line 104> 		<script src="/static/js/moreBtn.js"></script>
+<end of line 104>
+<line 105> 		<script src="/static/js/songPlaying.js"></script>
+<end of line 105>
+<line 106> 		<script src="/static/js/prompt.js"></script>
+<end of line 106>
+<line 107> 	</body>
+<end of line 107>
+<line 108> </html>
+<end of line 108>

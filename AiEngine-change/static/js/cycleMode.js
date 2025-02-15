@@ -37,15 +37,19 @@ let shuffle = `
 `
 // Array of cycle mode states and the initial state index (e.g.: list, single, shuffle)
 const cycleModes = ['list', 'single', 'shuffle']
-let currentCycleModeIndex = 0
 const cycleModeBtn = document.getElementById('cycle-mode-btn')
 
+let currentCycleModeIndex = 0
 // Initialize icon
-cycleModeBtn.innerHTML = listLoop
+setIcon()
 
 // Click to switch cycle mode
 cycleModeBtn.addEventListener('click', () => {
 	currentCycleModeIndex = (currentCycleModeIndex + 1) % cycleModes.length
+	
+})
+
+function setIcon(){
 	switch (cycleModes[currentCycleModeIndex]) {
 		case 'single':
 			cycleModeBtn.innerHTML = singleLoop
@@ -57,4 +61,4 @@ cycleModeBtn.addEventListener('click', () => {
 			cycleModeBtn.innerHTML = shuffle
 			break
 	}
-})
+}
