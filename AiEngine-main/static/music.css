@@ -31,7 +31,6 @@ body {
 	height: 100%;
 	border-radius: 50%;
 }
-
 .playing {
 	animation: rotation 20s linear infinite;
 }
@@ -86,7 +85,7 @@ body {
 }
 .player-controls,
 .bottom-actions {
-justify-content: flex-start;
+	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	margin-top: 20px;
