@@ -9,7 +9,6 @@ thisFilePath = os.path.dirname(os.path.realpath(__file__))
 folderPath = "AiEngine-main"
 labelling_folder = os.path.join(thisFilePath, "labelling_files")
 
-# 创建 labelling_files 文件夹，如果它不存在
 if not os.path.exists(labelling_folder):
     os.makedirs(labelling_folder)
 
@@ -18,9 +17,8 @@ original_files = []
 def push_labeled_file(file_path):
     original_files.append(file_path)
     new_file_path = os.path.join(labelling_folder, file_path.name)
-    shutil.copy2(file_path, new_file_path) # 复制文件
+    shutil.copy2(file_path, new_file_path) 
     
-    # 读取文件内容并插入行号
     with open(file_path, "r", encoding="utf-8") as f_in, open(new_file_path, "w", encoding="utf-8") as f_out:
         for i, line in enumerate(f_in):
             f_out.write(f"<line {i+1}> {line}<end of line {i+1}>\n")
@@ -56,8 +54,10 @@ class Change(BaseModel):
 class Changes(BaseModel):
     filename: str
     changes: list[Change]
-    
-meta_args = dict(files = [str(file) for file in original_files])
+
+with open("secret_recipe.txt", "r") as f:
+        secret_recipe = f.read().strip()
+meta_args = dict(files = [str(file) for file in original_files], secret_recipe = secret_recipe)
 meta_prompt = """
 The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. You should then read through each file and get the line number for each line of code. Your goal is to generate a modified version of the website that satisfies the task description. You do not need to return the subtask generated or the breakdown of the task. You only need to generate the JSON to indicate the changes on the HTML and CSS files provided. 
 
@@ -68,25 +68,12 @@ The filename is the name of the file that you want to change (you must use the f
 - content: the new content
 - action: insert or remove or replace
 
-A bad example of a change is:
-To change a row of buttons from positioned at center to positioned at left, a bad change is:
-[{{\"filename\": [relativefile path]: [{{\"start\": 17, \"end\": 18, \"content\": \"justify-content: left;\", \"action\": \"replace\"}}]}}]
-where the content is
-<line 17>    display: flex;
-<end of line 17>
-<line 18>    justify-content: center;
-<end of line 18>
-Because this change forgets that after the replacement, \"display: flex;\" is deleted. The correct change should be:
-[{{\"filename\": [relative file path], \"changes\": [{{\"start\": 18, \"end\": 18, \"content\": \"justify-content: left;\", \"action\": \"replace\"}}]}}]
-Where it only replaces the line that needs to be replaced.
-
+{secret_recipe}
 
 available file names are:
 {files}
 
 You should follow the following rules when making changes to the HTML and CSS files:
-You cannot change, remove or replace the any code in a <script> tag. 
-You cannot change, remove or replace the any code in a <link> tag.
 You should reset the line number when you switch to a new file.
 Your start and end line number should not exceed the total number of lines in the file.
 """.format(**meta_args).strip()
