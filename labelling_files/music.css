@@ -1,0 +1,518 @@
+<line 1> /* 基础样式 */
+<end of line 1>
+<line 2> body {
+<end of line 2>
+<line 3> 	font-family: Arial, sans-serif;
+<end of line 3>
+<line 4> 	margin: 0;
+<end of line 4>
+<line 5> 	padding: 0;
+<end of line 5>
+<line 6> 	background: #f0f0f0;
+<end of line 6>
+<line 7> 	height: 100vh;
+<end of line 7>
+<line 8> 	width: 100vw;
+<end of line 8>
+<line 9> 	user-select: none;
+<end of line 9>
+<line 10> 	overflow-x: hidden;
+<end of line 10>
+<line 11> }
+<end of line 11>
+<line 12> .container {
+<end of line 12>
+<line 13> 	max-width: 600px;
+<end of line 13>
+<line 14> 	margin: auto;
+<end of line 14>
+<line 15> 	display: flex;
+<end of line 15>
+<line 16> 	flex-direction: column;
+<end of line 16>
+<line 17> 	height: 100vh;
+<end of line 17>
+<line 18> 	justify-content: space-evenly;
+<end of line 18>
+<line 19> 	align-items: center;
+<end of line 19>
+<line 20> }
+<end of line 20>
+<line 21> .disk {
+<end of line 21>
+<line 22> 	width: 300px;
+<end of line 22>
+<line 23> 	height: 300px;
+<end of line 23>
+<line 24> 	border-radius: 50%;
+<end of line 24>
+<line 25> 	overflow: hidden;
+<end of line 25>
+<line 26> 	border: 5px solid #ccc;
+<end of line 26>
+<line 27> 	position: relative;
+<end of line 27>
+<line 28> 	animation-play-state: paused;
+<end of line 28>
+<line 29> }
+<end of line 29>
+<line 30> .disk img {
+<end of line 30>
+<line 31> 	width: 100%;
+<end of line 31>
+<line 32> 	height: 100%;
+<end of line 32>
+<line 33> 	border-radius: 50%;
+<end of line 33>
+<line 34> }
+<end of line 34>
+<line 35> /* 旋转动画，播放时添加 .playing 类 */
+<end of line 35>
+<line 36> .playing {
+<end of line 36>
+<line 37> 	animation: rotation 20s linear infinite;
+<end of line 37>
+<line 38> }
+<end of line 38>
+<line 39> @keyframes rotation {
+<end of line 39>
+<line 40> 	from {
+<end of line 40>
+<line 41> 		transform: rotate(0deg);
+<end of line 41>
+<line 42> 	}
+<end of line 42>
+<line 43> 	to {
+<end of line 43>
+<line 44> 		transform: rotate(360deg);
+<end of line 44>
+<line 45> 	}
+<end of line 45>
+<line 46> }
+<end of line 46>
+<line 47> 
+<end of line 47>
+<line 48> .controls {
+<end of line 48>
+<line 49> 	height: 300px;
+<end of line 49>
+<line 50> 	width: 100%;
+<end of line 50>
+<line 51> }
+<end of line 51>
+<line 52> 
+<end of line 52>
+<line 53> .song-info {
+<end of line 53>
+<line 54> 	display: flex;
+<end of line 54>
+<line 55> 	align-items: center;
+<end of line 55>
+<line 56> 	margin-top: 100px;
+<end of line 56>
+<line 57> 	width: 100%;
+<end of line 57>
+<line 58> }
+<end of line 58>
+<line 59> .song-title {
+<end of line 59>
+<line 60> 	flex: 1;
+<end of line 60>
+<line 61> 	overflow: hidden;
+<end of line 61>
+<line 62> 	white-space: nowrap;
+<end of line 62>
+<line 63> 	position: relative;
+<end of line 63>
+<line 64> 	width: 100px;
+<end of line 64>
+<line 65> }
+<end of line 65>
+<line 66> 
+<end of line 66>
+<line 67> .song-title-truncate {
+<end of line 67>
+<line 68> 	width: 200px;
+<end of line 68>
+<line 69> 	overflow: hidden;
+<end of line 69>
+<line 70> }
+<end of line 70>
+<line 71> 
+<end of line 71>
+<line 72> .song-actions {
+<end of line 72>
+<line 73> 	display: flex;
+<end of line 73>
+<line 74> 	align-items: center;
+<end of line 74>
+<line 75> 	gap: 15px;
+<end of line 75>
+<line 76> 	margin-left: 10px;
+<end of line 76>
+<line 77> }
+<end of line 77>
+<line 78> .control-slider {
+<end of line 78>
+<line 79> 	width: 100%;
+<end of line 79>
+<line 80> 	margin: 10px 0;
+<end of line 80>
+<line 81> }
+<end of line 81>
+<line 82> .time-info {
+<end of line 82>
+<line 83> 	display: flex;
+<end of line 83>
+<line 84> 	justify-content: space-between;
+<end of line 84>
+<line 85> 	font-size: 0.9em;
+<end of line 85>
+<line 86> 	width: 100%;
+<end of line 86>
+<line 87> }
+<end of line 87>
+<line 88> .player-controls,
+<end of line 88>
+<line 89> .bottom-actions {
+<end of line 89>
+<line 90> 	display: flex;
+<end of line 90>
+<line 91> 	justify-content: space-around;
+<end of line 91>
+<line 92> 	align-items: center;
+<end of line 92>
+<line 93> 	margin-top: 20px;
+<end of line 93>
+<line 94> 	width: 100%;
+<end of line 94>
+<line 95> }
+<end of line 95>
+<line 96> .control-btn,
+<end of line 96>
+<line 97> .action-btn {
+<end of line 97>
+<line 98> 	background: none;
+<end of line 98>
+<line 99> 	border: none;
+<end of line 99>
+<line 100> 	cursor: pointer;
+<end of line 100>
+<line 101> 	font-size: 1.2em;
+<end of line 101>
+<line 102> 	display: flex;
+<end of line 102>
+<line 103> 	align-items: center;
+<end of line 103>
+<line 104> 	justify-content: center;
+<end of line 104>
+<line 105> }
+<end of line 105>
+<line 106> 
+<end of line 106>
+<line 107> input[type='range'] {
+<end of line 107>
+<line 108> 	-webkit-appearance: none;
+<end of line 108>
+<line 109> 	width: 100%;
+<end of line 109>
+<line 110> 	background: transparent;
+<end of line 110>
+<line 111> 	/* 使用 CSS 变量来控制已填充部分的百分比（需通过 JS 更新） */
+<end of line 111>
+<line 112> 	background: linear-gradient(
+<end of line 112>
+<line 113> 		to right,
+<end of line 113>
+<line 114> 		black var(--range-percentage, 50%),
+<end of line 114>
+<line 115> 		#ddd var(--range-percentage, 50%)
+<end of line 115>
+<line 116> 	);
+<end of line 116>
+<line 117> }
+<end of line 117>
+<line 118> input[type='range']:focus {
+<end of line 118>
+<line 119> 	outline: none;
+<end of line 119>
+<line 120> }
+<end of line 120>
+<line 121> 
+<end of line 121>
+<line 122> /* 更新 Chrome, Edge (Chromium) 样式中的 track 背景 */
+<end of line 122>
+<line 123> input[type='range']::-webkit-slider-runnable-track {
+<end of line 123>
+<line 124> 	height: 6px;
+<end of line 124>
+<line 125> 	border-radius: 3px;
+<end of line 125>
+<line 126> 	background: linear-gradient(
+<end of line 126>
+<line 127> 		to right,
+<end of line 127>
+<line 128> 		black var(--range-percentage, 50%),
+<end of line 128>
+<line 129> 		#ddd var(--range-percentage, 50%)
+<end of line 129>
+<line 130> 	);
+<end of line 130>
+<line 131> }
+<end of line 131>
+<line 132> input[type='range']::-webkit-slider-thumb {
+<end of line 132>
+<line 133> 	-webkit-appearance: none;
+<end of line 133>
+<line 134> 	height: 14px;
+<end of line 134>
+<line 135> 	width: 14px;
+<end of line 135>
+<line 136> 	border-radius: 50%;
+<end of line 136>
+<line 137> 	background: black;
+<end of line 137>
+<line 138> 	margin-top: -4px; /* 根据轨道高度调整居中 */
+<end of line 138>
+<line 139> 	cursor: pointer;
+<end of line 139>
+<line 140> }
+<end of line 140>
+<line 141> 
+<end of line 141>
+<line 142> #like-btn.liked {
+<end of line 142>
+<line 143> 	color: red;
+<end of line 143>
+<line 144> }
+<end of line 144>
+<line 145> 
+<end of line 145>
+<line 146> #comment-section {
+<end of line 146>
+<line 147> 	max-width: 600px;
+<end of line 147>
+<line 148> 	margin: auto;
+<end of line 148>
+<line 149> 	display: flex;
+<end of line 149>
+<line 150> 	flex-direction: column;
+<end of line 150>
+<line 151> 	width: 100vw;
+<end of line 151>
+<line 152> 	height: 100vh;
+<end of line 152>
+<line 153> 	justify-content: space-evenly;
+<end of line 153>
+<line 154> 	align-items: left;
+<end of line 154>
+<line 155> }
+<end of line 155>
+<line 156> 
+<end of line 156>
+<line 157> .comment {
+<end of line 157>
+<line 158> 	display: flex;
+<end of line 158>
+<line 159> 	align-items: flex-start;
+<end of line 159>
+<line 160> 	margin: 15px 0;
+<end of line 160>
+<line 161> 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+<end of line 161>
+<line 162> }
+<end of line 162>
+<line 163> 
+<end of line 163>
+<line 164> .avatar {
+<end of line 164>
+<line 165> 	width: 50px;
+<end of line 165>
+<line 166> 	height: 50px;
+<end of line 166>
+<line 167> 	border-radius: 50%;
+<end of line 167>
+<line 168> 	margin-right: 15px;
+<end of line 168>
+<line 169> }
+<end of line 169>
+<line 170> 
+<end of line 170>
+<line 171> .comment-text {
+<end of line 171>
+<line 172> 	flex: 1;
+<end of line 172>
+<line 173> 	font-size: 1rem;
+<end of line 173>
+<line 174> 	color: #333;
+<end of line 174>
+<line 175> }
+<end of line 175>
+<line 176> 
+<end of line 176>
+<line 177> .popup-overlay {
+<end of line 177>
+<line 178> 	position: fixed;
+<end of line 178>
+<line 179> 	top: 0;
+<end of line 179>
+<line 180> 	left: 0;
+<end of line 180>
+<line 181> 	width: 100%;
+<end of line 181>
+<line 182> 	height: 100%;
+<end of line 182>
+<line 183> 	background: rgba(0, 0, 0, 0.5);
+<end of line 183>
+<line 184> 	display: flex;
+<end of line 184>
+<line 185> 	justify-content: center;
+<end of line 185>
+<line 186> 	align-items: center;
+<end of line 186>
+<line 187> 	z-index: 1000;
+<end of line 187>
+<line 188> }
+<end of line 188>
+<line 189> 
+<end of line 189>
+<line 190> .popup {
+<end of line 190>
+<line 191> 	background: #fff;
+<end of line 191>
+<line 192> 	padding: 20px;
+<end of line 192>
+<line 193> 	border-radius: 8px;
+<end of line 193>
+<line 194> 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+<end of line 194>
+<line 195> 	text-align: center;
+<end of line 195>
+<line 196> 	width: 300px;
+<end of line 196>
+<line 197> }
+<end of line 197>
+<line 198> 
+<end of line 198>
+<line 199> .popup-actions {
+<end of line 199>
+<line 200> 	margin-top: 15px;
+<end of line 200>
+<line 201> 	display: flex;
+<end of line 201>
+<line 202> 	justify-content: space-around;
+<end of line 202>
+<line 203> }
+<end of line 203>
+<line 204> 
+<end of line 204>
+<line 205> .hidden {
+<end of line 205>
+<line 206> 	display: none;
+<end of line 206>
+<line 207> }
+<end of line 207>
+<line 208> 
+<end of line 208>
+<line 209> button,
+<end of line 209>
+<line 210> .control-btn,
+<end of line 210>
+<line 211> .action-btn {
+<end of line 211>
+<line 212> 	transition: box-shadow 0.2s ease-in-out;
+<end of line 212>
+<line 213> }
+<end of line 213>
+<line 214> 
+<end of line 214>
+<line 215> button:hover,
+<end of line 215>
+<line 216> .control-btn:hover,
+<end of line 216>
+<line 217> .action-btn:hover {
+<end of line 217>
+<line 218> 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+<end of line 218>
+<line 219> }
+<end of line 219>
+<line 220> 
+<end of line 220>
+<line 221> button:active,
+<end of line 221>
+<line 222> .control-btn:active,
+<end of line 222>
+<line 223> .action-btn:active {
+<end of line 223>
+<line 224> 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+<end of line 224>
+<line 225> }
+<end of line 225>
+<line 226> 
+<end of line 226>
+<line 227> #more-btn {
+<end of line 227>
+<line 228> 	position: relative;
+<end of line 228>
+<line 229> }
+<end of line 229>
+<line 230> 
+<end of line 230>
+<line 231> .dropup-menu {
+<end of line 231>
+<line 232> 	position: absolute;
+<end of line 232>
+<line 233> 	/* 菜单定位到 more 按钮上方，可根据实际情况调整 */
+<end of line 233>
+<line 234> 	bottom: 30px;
+<end of line 234>
+<line 235> 	right: 0;
+<end of line 235>
+<line 236> 	background: #fff;
+<end of line 236>
+<line 237> 	border: 1px solid #ccc;
+<end of line 237>
+<line 238> 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+<end of line 238>
+<line 239> 	border-radius: 4px;
+<end of line 239>
+<line 240> 	padding-top: 4px;
+<end of line 240>
+<line 241> 	padding-bottom: 4px;
+<end of line 241>
+<line 242> 	z-index: 100;
+<end of line 242>
+<line 243> }
+<end of line 243>
+<line 244> 
+<end of line 244>
+<line 245> .menu-item {
+<end of line 245>
+<line 246> 	width: 110px;
+<end of line 246>
+<line 247> 	padding: 8px 10px;
+<end of line 247>
+<line 248> 	font-size: 15px;
+<end of line 248>
+<line 249> 	text-align: left;
+<end of line 249>
+<line 250> 	cursor: pointer;
+<end of line 250>
+<line 251> }
+<end of line 251>
+<line 252> 
+<end of line 252>
+<line 253> .menu-item:hover {
+<end of line 253>
+<line 254> 	background-color: #f0f0f0;
+<end of line 254>
+<line 255> }
+<end of line 255>
+<line 256> 
+<end of line 256>
+<line 257> .hidden {
+<end of line 257>
+<line 258> 	display: none;
+<end of line 258>
+<line 259> }
+<end of line 259>
