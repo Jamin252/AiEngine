@@ -14,7 +14,9 @@ if not os.path.exists(labelling_folder):
     os.makedirs(labelling_folder)
 
 files = []
+original_files = []
 def push_labeled_file(file_path):
+    original_files.append(file_path)
     new_file_path = os.path.join(labelling_folder, file_path.name)
     shutil.copy2(file_path, new_file_path) # 复制文件
     
@@ -55,37 +57,40 @@ class Changes(BaseModel):
     filename: str
     changes: list[Change]
     
-meta_args = dict(files = [str(file) for file in files])
+meta_args = dict(files = [str(file) for file in original_files])
 meta_prompt = """
-The HTML and CSS file is the source code of a website. You will be given a task to modify the website.
-The task will be given in the form of natural language. Your should first separate the task into individual subtasks.
-Your goal is to generate a modified version of the website that satisfies the task description.
-You do not need to return the subtask generated or the breakdown of the task.
-You only need to generate the JSON to indicate the changes on the HTML and CSS files provided. 
+The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. You should then read through each file and get the line number for each line of code. Your goal is to generate a modified version of the website that satisfies the task description. You do not need to return the subtask generated or the breakdown of the task. You only need to generate the JSON to indicate the changes on the HTML and CSS files provided. 
 
 Use this JSON schema:
 The filename is the name of the file that you want to change (you must use the file name of the files provided). The changes is a list of changes that you want to make to the file. Each change is a dictionary with the following keys:
-- start: the start line number of the change
-- end: the end line number of the change
+- start: the start line number of the change (the content will be inserted after this line)
+- end: the end line number of the change (inclusive)
 - content: the new content
 - action: insert or remove or replace
 
 A bad example of a change is:
 To change a row of buttons from positioned at center to positioned at left, a bad change is:
-[{{\"filename\": \"music.css\", \"changes\": [{{\"start\": 17, \"end\": 18, \"content\": \"justify-content: left;\", \"action\": \"replace\"}}]}}]
+[{{\"filename\": [relativefile path]: [{{\"start\": 17, \"end\": 18, \"content\": \"justify-content: left;\", \"action\": \"replace\"}}]}}]
 where the content is
 <line 17>    display: flex;
 <end of line 17>
 <line 18>    justify-content: center;
 <end of line 18>
 Because this change forgets that after the replacement, \"display: flex;\" is deleted. The correct change should be:
-[{{\"filename\": \"music.css\", \"changes\": [{{\"start\": 18, \"end\": 18, \"content\": \"justify-content: left;\", \"action\": \"replace\"}}]}}]
+[{{\"filename\": [relative file path], \"changes\": [{{\"start\": 18, \"end\": 18, \"content\": \"justify-content: left;\", \"action\": \"replace\"}}]}}]
 Where it only replaces the line that needs to be replaced.
 
 
 available file names are:
 {files}
+
+You should follow the following rules when making changes to the HTML and CSS files:
+You cannot change, remove or replace the any code in a <script> tag. 
+You cannot change, remove or replace the any code in a <link> tag.
+You should reset the line number when you switch to a new file.
+Your start and end line number should not exceed the total number of lines in the file.
 """.format(**meta_args).strip()
+print(meta_args["files"])
 
 # prompt = "Change background color to blue. Change title to \"MYMUSICPLAYER\"".strip()
 # prompt = "Change the music.css such that the background color of the website is blue. Change title in music.html file such that title of the webpage becomes \"MYMUSICPLAYER\"".strip()
@@ -94,7 +99,7 @@ available file names are:
 
 prompt = "Look at the row of buttons containing play button, I want buttons of this row to be positioned at left, not spanning the whole width of the page".strip()
 
-print([meta_prompt] + [prompt])
+# print([meta_prompt] + [prompt])
 
 
 response = client.models.generate_content(
@@ -105,7 +110,7 @@ response = client.models.generate_content(
         'response_schema': list[Changes]
   }
 )
-print('')
-print(response.text)
-with open("test_webpage/output.json", "w+") as f:
+# print('')
+# print(response.text)
+with open("output.json", "w+") as f:
     f.write(response.text)

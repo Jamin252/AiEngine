@@ -86,9 +86,9 @@ body {
 }
 .player-controls,
 .bottom-actions {
-justify-content: flex-start;
-	justify-content: space-around;
+	display: flex;
 	align-items: center;
+justify-content: flex-start;
 	margin-top: 20px;
 	width: 100%;
 }
@@ -227,6 +227,7 @@ button:active,
 
 .dropup-menu {
 	position: absolute;
+
 	bottom: 30px;
 	right: 0;
 	background: #fff;
