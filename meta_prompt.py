@@ -1,4 +1,4 @@
-
+import os
 from openai import OpenAI
 
 client = OpenAI()
@@ -48,19 +48,59 @@ output Python code that produces the desired output
 
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]
 """.strip()
+meta_args = {}
 
-def generate_prompt(task_or_prompt: str):
+htmlFiles = """"""
+for file in os.listdir("test_webpage"):
+    filename = os.path.join("test_webpage", os.fsdecode(file))
+    if filename.endswith(".html"):
+        with open(filename, "r") as f:
+            htmlFiles += f"---{file}\n" + f.read().strip() + "\n\n"
+meta_args["HTMLFiles"] = htmlFiles
+
+css_files = """"""
+for file in os.listdir("test_webpage/css"):
+    filename =  os.path.join("test_webpage/css", os.fsdecode(file))
+    if filename.endswith(".css"):
+        with open("test_webpage/css/jquery.css", "r") as f:
+            css_files += f"---{file}\n" + f.read().strip() + "\n" + f"---endfile {file}"+"\n\n"
+meta_args["CSSFiles"] = css_files
+
+meta_prompt = """
+You are given a list of HTML files and CSS files with the following format:
+---[file name]
+[HTML or CSS code]
+---endfile [file name]
+
+HTML files:
+{HTMLFiles}
+
+CSS files:
+{CSSFiles}
+
+The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. Your goal is to generate a modified version of the website that satisfies the task description. You need to generate the all the HTML and CSS files provided. 
+Example task description:
+Change the background color of the website to blue.
+Change the font size to 100
+Change the font family to Arial
+Change the font color to red
+
+The output should be in the following format:
+---[file name]
+[HTML or CSS code]
+---endfile [file name]
+""".format(**meta_args)
+
+# print(meta_prompt)
+
+def give_meta():
     completion = client.chat.completions.create(
         model="gpt-4o",
         messages=[
             {
                 "role": "system",
-                "content": META_PROMPT,
-            },
-            {
-                "role": "user",
-                "content": "Task, Goal, or Current Prompt:\n" + task_or_prompt,
-            },
+                "content": meta_prompt,
+            }
         ],
     )
 
@@ -79,6 +119,10 @@ def give_prompt(msg: str):
 
     return completion.choices[0].message.content
 
-ans = generate_prompt("What is 1 + 1?")
-print(ans)
-print(give_prompt("What is 1 + 1?"))
+give_meta()
+with open("prompt.txt", "r") as f:
+    p = f.read()
+    # print(p)
+    ans = give_prompt(p)
+    with open("output1.txt", "w") as fout:
+        fout.write(ans)

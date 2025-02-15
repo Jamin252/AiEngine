@@ -1,0 +1,6 @@
+claude-env
+*.patch
+*.zip
+*.copilot_token
+copilot-api-main
+*.code-workspace

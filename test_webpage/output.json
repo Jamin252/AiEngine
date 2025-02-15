@@ -1,0 +1,48 @@
+[
+{
+"filename": "C:\\Users\\jamin\\Documents\\DS_AI_ML_projects\\AI_Engine\\test_webpage\\index.html",
+"changes": [
+{
+"start": 18,
+"end": 18,
+"content": "\n\n\n\n\n\n\n<div data-role=\"footer\" data-position=\"fixed\" data-theme=\"b\" id=\"myfooter\">\n<button>Home</button>\n</div>",
+"action": "insert"
+},
+{
+"start": 18,
+"end": 18,
+"content": "\n\n\n\n\n\n",
+"action": "remove"
+},
+{
+"start": 2,
+"end": 2,
+"content": " <title>(changed header)</title>",
+"action": "replace"
+}
+]
+},
+{
+"filename": "C:\\Users\\jamin\\Documents\\DS_AI_ML_projects\\AI_Engine\\test_webpage\\css\\listview-grid.css",
+"changes": [
+{
+"start": 1,
+"end": 1,
+"content": "body {background-color: blue;}\n",
+"action": "insert"
+},
+{
+"start": 1,
+"end": 1,
+"content": "html {\n    font-size: 100%;\n}",
+"action": "replace"
+},
+{
+"start": 1765,
+"end": 1765,
+"content": "\n#myfooter button {\n\nmargin: 0.5em 0;\n}",
+"action": "insert"
+}
+]
+}
+]
