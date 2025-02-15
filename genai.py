@@ -49,7 +49,7 @@ class Changes(BaseModel):
     filename: str
     changes: list[Change]
     
-meta_args = dict(files = [str(file.absolute()) for file in files])
+meta_args = dict(files = [str(file) for file in files])
 meta_prompt = """
 The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. Your goal is to generate a modified version of the website that satisfies the task description. You do not need to return the subtask generated or the breakdown of the task. You only need to generate the JSON to indicate the changes on the HTML and CSS files provided. 
 Example task description:
