@@ -73,14 +73,14 @@ def main(msg):
 
     {secret_recipe}
 
-    available file names are:
+    available file paths are:
     {files}
 
     You should follow the following rules when making changes to the HTML and CSS files:
     You should reset the line number when you switch to a new file.
     Your start and end line number should not exceed the total number of lines in the file.
     """.format(**meta_args).strip()
-    print(meta_args["files"])
+    # print(meta_args["files"])
 
     # prompt = "Change background color to blue. Change title to \"MYMUSICPLAYER\"".strip()
     # prompt = "Change the music.css such that the background color of the website is blue. Change title in music.html file such that title of the webpage becomes \"MYMUSICPLAYER\"".strip()
@@ -106,3 +106,5 @@ def main(msg):
         f.write(response.text)
         
     apply_patch("output.json")
+    
+main("Look at the row of buttons containing play button, I want buttons of this row to be positioned at left, not spanning the whole width of the page")

@@ -1,1 +1,1 @@
-[{"filename": "AiEngine-main\\templates\\music.html", "changes": [{"start": 90, "end": 90, "content": "justify-content: flex-start;", "action": "insert"}]}, {"filename": "AiEngine-main\\static\\music.css", "changes": [{"start": 89, "end": 89, "content": "justify-content: flex-start;", "action": "replace"}]}]
+[{"filename": "AiEngine-main\\static\\music.css", "changes": [{"start": 89, "end": 89, "content": "justify-content: flex-start;", "action": "replace"}]}]

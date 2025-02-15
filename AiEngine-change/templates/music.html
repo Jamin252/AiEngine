@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Music Player</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" media="screen" href="/static/music.css" />
+	</head>
+	<body>
+		<div class="container">
+			<!-- Disk with song cover, rotation effect controlled by adding .playing class -->
+			<div class="disk playing" id="disk">
+				<img src="" />
+			</div>
+
+			<div class="controls">
+				<!-- Song info area -->
+				<songInfo />
+
+				<!-- Playback progress bar -->
+				<input
+					type="range"
+					class="control-slider"
+					id="progress-slider"
+					min="0"
+					max="100"
+					value="0"
+				/>
+
+				<!-- Playback time display -->
+				<div class="time-info">
+					<span id="current-time">0:00</span>
+					<span id="remaining-time">-0:00</span>
+				</div>
+
+				<!-- Playback control buttons -->
+				<div class="player-controls">
+					<!-- Cycle mode button: toggles between loop, random, and loop one -->
+					<button class="control-btn" id="cycle-mode-btn" title="Loop Mode"></button>
+					<button class="control-btn" id="prev-btn" title="Previous Track">&#9664;&#9664;</button>
+					<button class="control-btn" id="play-pause-btn" title="Play/Pause">&#9654;</button>
+					<button class="control-btn" id="next-btn" title="Next Track">&#9654;&#9654;</button>
+					<button class="control-btn" id="playlist-btn" title="Playlist">&#9776;</button>
+				</div>
+
+				<!-- Bottom action buttons -->
+				<div class="bottom-actions">
+					<connectBtn />
+					<button class="action-btn" id="download-btn" title="Download Song">&#8681;</button>
+					<moreBtn />
+				</div>
+			</div>
+		</div>
+
+		<!-- Download confirmation popup -->
+		<downloadPopup />
+
+		<!-- Bluetooth connection confirmation popup -->
+		<bluetoothPopup />
+
+		<!-- Comments section -->
+		<div id="comment-section">
+			<!-- Place the content of the comment page here -->
+			<h2>Comments</h2>
+			<comment />
+			<comment />
+			<comment />
+			<comment />
+			<comment />
+			<comment />
+			<comment />
+		</div>
+		<script src="/static/js/menuBtn.js"></script>
+		<script src="/static/js/titleScroller.js"></script>
+		<script src="/static/js/likeBtn.js"></script>
+		<script src="/static/js/commentBtn.js"></script>
+		<script src="/static/js/download.js"></script>
+		<script src="/static/js/bluetooth.js"></script>
+		<script src="/static/js/cycleMode.js"></script>
+		<script src="/static/js/moreBtn.js"></script>
+		<script src="/static/js/songPlaying.js"></script>
+	</body>
+</html>

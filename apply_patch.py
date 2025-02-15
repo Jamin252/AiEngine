@@ -8,14 +8,14 @@ def apply_patch(patchfile = "output.json"):
     with open(os.path.join(current_path, patchfile), "r") as f:
         patch = json.load(f)
         for filePatches in patch:
-            pprint(filePatches["filename"])
+            # pprint(filePatches["filename"])
             changes = filePatches["changes"]
             # pprint(changes)
             res = []
             with open(os.path.join(current_path, filePatches["filename"]), "r") as f:
                 content = f.read().split("\n")
                 res = []
-                print(f"content == {content}")
+                # print(f"content == {content}")
                 l = len(content)
                 i = 1
                 while i<= l:
@@ -39,4 +39,5 @@ def apply_patch(patchfile = "output.json"):
                     i += 1
                 # print(res)
             with open(os.path.join(current_path, filePatches["filename"].replace("AiEngine-main", "AiEngine-change", 1)), "w+") as f:
+                # print(os.path.join(current_path, filePatches["filename"].replace("AiEngine-main", "AiEngine-change", 1)))
                 f.write("\n".join(res))

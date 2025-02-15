@@ -1,0 +1,4 @@
+Look at the row of buttons containing play button, I want buttons of this row to be positioned at left, not spanning the whole width of the page
+Change the background color of the page to blue
+Change the font family of the page to Arial
+Change the font size of the page to 20px
