@@ -26,7 +26,7 @@ for file_path in files:
             config = dict(mime_type = "text/html" if file_path.suffix == ".html" else "text/css")
         )
     )
-patch_file_exp = client.files.upload(file = pathlib.Path(os.path.join(thisFilePath, "test_webpage", "0001-ai-done.patch")), config = dict(mime_type = "text/plain"))
+# patch_file_exp = client.files.upload(file = pathlib.Path(os.path.join(thisFilePath, "test_webpage", "0001-ai-done.patch")), config = dict(mime_type = "text/plain"))
 # meta_prompt = """
 # The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. Your goal is to generate a modified version of the website that satisfies the task description. You do not need to return the subtask generated or the breakdown of the task. You only need to generate the git patch file for the HTML and CSS file provided. 
 # Example task description:
@@ -51,7 +51,7 @@ class Changes(BaseModel):
     
 meta_args = dict(files = [str(file) for file in files])
 meta_prompt = """
-The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. Your goal is to generate a modified version of the website that satisfies the task description. You do not need to return the subtask generated or the breakdown of the task. You only need to generate the JSON to indicate the changes on the HTML and CSS files provided. 
+The HTML and CSS file is the source code of a website. You will be given a task to modify the website. The task will be given in the form of natural language. Your should first separate the task into individual subtasks. Your goal is to generate a modified version of the website that satisfies the task description. You do not need to return the subtask generated or the breakdown of the task. You only need to generate the JSON to indicate the changes on the HTML and CSS files provided. You cannot change, remove or replace the any code in a <script> tag.
 Example task description:
 Change the background color of the website to blue.
 Change the font size to 100
@@ -68,17 +68,17 @@ The filename is the name of the file that you want to change (you must use the f
 available file names are:
 {files}
 """.format(**meta_args).strip()
-print(meta_prompt)
-prompt = "Change background color to blue. change font size to 100. add a button name home at the bottom of the page. Change title to (changed header)".strip()
+# print(meta_prompt)
+prompt = "Change background color to blue. Change font size to 100. add a button name home at the bottom of the page. Change title to (changed header)".strip()
 
 response = client.models.generate_content(
-  model="gemini-1.5-flash",
-  contents=files_prompt + [patch_file_exp] + [meta_prompt] + [prompt],
+  model="gemini-1.5-pro",
+  contents=files_prompt + [meta_prompt] + [prompt],
   config={
         'response_mime_type': 'application/json',
         'response_schema': list[Changes]
   }
 )
 print(response.text)
-with open("test_webpage/output.json", "w+") as f:
+with open("output.json", "w+") as f:
     f.write(response.text)
